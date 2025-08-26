@@ -1,11 +1,27 @@
-/* Base + tokens */
+/* === Global base & tokens === */
 * { box-sizing: border-box; }
 html, body { height: 100%; }
 html { color-scheme: dark; }
+
+:root {
+  --bg: #0B1213;
+  --text: #E7ECEB;
+  --muted: #AEB8B6;
+  --card: rgba(255,255,255,0.05);
+  --ring: rgba(255,255,255,0.12);
+  --accent: #4ADE80;
+  --ink: #0D1B1E;
+  --radius: 16px;
+  --container: 1120px;
+}
+
 body {
   margin: 0;
-  background: #0b1213;
-  color: #e7eceb;
+  background: var(--bg);
+  color: var(--text);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+/* Basic element styles */
+a { color: inherit; text-decoration: none; }
