@@ -1,0 +1,11 @@
+/* Base + tokens */
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+html { color-scheme: dark; }
+body {
+  margin: 0;
+  background: #0b1213;
+  color: #e7eceb;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
