@@ -1,25 +1,69 @@
-/* === Page-scoped styles (CSS Module) === */
+/* =========================================
+   Home (page-scoped) CSS Module
+   - relies on global tokens set in globals.css:
+     --bg, --text, --muted, --card, --ring, --accent, --ink, --radius, --container
+   ========================================= */
 
-.page { color: var(--text); background: var(--bg); }
+.page {
+  background: var(--bg);
+  color: var(--text);
+}
 
-.container { width: 100%; max-width: var(--container); margin: 0 auto; padding: 0 24px; }
-
-.tag { font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: #cfd6d4; }
-
-.h1 { font-size: clamp(32px, 6vw, 56px); line-height: 1.05; font-weight: 700; margin: 12px 0 8px; }
-.h2 { font-size: clamp(26px, 4.2vw, 40px); line-height: 1.15; font-weight: 700; margin: 8px 0; }
-.h3 { font-size: 18px; font-weight: 600; margin: 0 0 4px; }
-
-.lead { max-width: 720px; color: #d7dfde; font-size: 18px; }
-.sub  { max-width: 720px; color: #cfd6d4; }
+/* Layout */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 24px;
+}
 
 .section { padding: 64px 0; }
 .header  { margin-bottom: 24px; }
 
-.grid3 { display: grid; gap: 16px; }
-@media (min-width: 700px) { .grid3 { grid-template-columns: repeat(3, 1fr); gap: 20px; } }
+/* Typography helpers */
+.tag {
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #cfd6d4;
+}
 
-.spanAll { grid-column: 1 / -1; }
+.h1 {
+  font-size: clamp(32px, 6vw, 56px);
+  line-height: 1.05;
+  font-weight: 700;
+  margin: 12px 0 8px;
+}
+
+.h2 {
+  font-size: clamp(26px, 4.2vw, 40px);
+  line-height: 1.15;
+  font-weight: 700;
+  margin: 8px 0;
+}
+
+.h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 4px;
+}
+
+.lead { max-width: 720px; color: #d7dfde; font-size: 18px; }
+.sub  { max-width: 720px; color: #cfd6d4; }
+
+/* ===== Services grid =====
+   1 col mobile, 2 cols tablet, 3 cols desktop */
+.grid3 {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 700px) {
+  .grid3 { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+}
+@media (min-width: 1024px) {
+  .grid3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
 
 /* Cards */
 .card {
@@ -35,61 +79,101 @@
 .muted { color: var(--muted); font-size: 14px; margin-top: 10px; }
 .mutedSmall { color: var(--muted); font-size: 12px; }
 
-/* Hero */
-.hero { position: relative; overflow: hidden; border-radius: var(--radius); padding: 56px 0; }
-.heroBg {
-  position: absolute; inset: -10% -10% auto -10%; height: 420px;
-  background: radial-gradient(900px 420px at 20% -10%, var(--accent), transparent 60%);
-  opacity: .3; pointer-events: none;
+/* ===== Hero ===== */
+.hero {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius);
+  padding: 56px 0;
 }
-.heroActions { display: flex; gap: 12px; margin-top: 20px; flex-wrap: wrap; }
+.heroBg {
+  position: absolute;
+  inset: -10% -10% auto -10%;
+  height: 420px;
+  background: radial-gradient(900px 420px at 20% -10%, var(--accent), transparent 60%);
+  opacity: .3;
+  pointer-events: none;
+}
+.heroActions {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
 
 /* Buttons */
 .btn {
-  display: inline-flex; align-items: center; justify-content: center; padding: 12px 18px;
-  font-weight: 600; border-radius: 14px; border: 1px solid transparent; text-decoration: none;
-  transition: transform .06s ease, opacity .2s ease, border-color .2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 18px;
+  font-weight: 600;
+  border-radius: 14px;
+  border: 1px solid transparent;
+  text-decoration: none;
+  transition: transform .06s ease, opacity .2s ease, border-color .2s ease, background .2s ease;
 }
 .btn:hover { transform: translateY(-1px); }
 .btnPrimary { background: var(--accent); color: var(--ink); }
-.btnGhost { color: var(--text); border-color: var(--ring); background: transparent; }
+.btnGhost   { color: var(--text); border-color: var(--ring); background: transparent; }
 
 /* Quotes */
 .quote { color: #eef3f2; }
 .caption { margin-top: 10px; color: var(--muted); font-size: 14px; }
 
 /* Forms */
-.form { display: grid; gap: 14px; grid-template-columns: 1fr; }
-@media (min-width: 720px) { .form { grid-template-columns: 1fr 1fr; } }
+.form {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 720px) {
+  .form { grid-template-columns: 1fr 1fr; }
+}
 .field, .fieldFull { display: grid; gap: 6px; }
 .fieldFull { grid-column: 1 / -1; }
 .label { color: #cfd6d4; font-size: 14px; }
 .input, .textarea {
-  width: 100%; background: var(--card); border: 1px solid var(--ring);
-  border-radius: 12px; padding: 12px 14px; color: var(--text); outline: none;
+  width: 100%;
+  background: var(--card);
+  border: 1px solid var(--ring);
+  border-radius: 12px;
+  padding: 12px 14px;
+  color: var(--text);
+  outline: none;
 }
 .input:focus, .textarea:focus {
   border-color: rgba(74, 222, 128, 0.6);
   box-shadow: 0 0 0 3px rgba(74, 222, 128, 0.15);
 }
-.actions { grid-column: 1 / -1; display: flex; align-items: center; gap: 12px; margin-top: 4px; }
+.actions {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 4px;
+}
 
-/* Long CTA banners */
-.ctaBanner,
+/* ===== Single CTA banner (below the three cards) ===== */
 .ctaBannerAlt {
   border: 1px solid var(--ring);
   border-radius: var(--radius);
   padding: 28px 20px;
   text-align: center;
-  background: rgba(255,255,255,0.05);
-  margin-top: 16px;
-}
-.ctaBannerAlt {
   margin-top: 24px;
   background:
-    radial-gradient(700px 240px at 20% 0%, rgba(74,222,128,.2), transparent 60%),
-    rgba(255,255,255,0.05);
+    radial-gradient(700px 240px at 20% 0%, rgba(74, 222, 128, .2), transparent 60%),
+    rgba(255, 255, 255, 0.05);
 }
 .ctaBannerInner { max-width: 800px; margin: 0 auto; }
 .ctaHeadline { margin: 0 0 6px; font-size: clamp(20px, 3.6vw, 28px); font-weight: 700; }
 .ctaSub { margin: 0 0 14px; color: #cfd6d4; }
+
+/* (Optional) If you ever add a mid-grid CTA again, this is ready-to-use. */
+.ctaBanner {
+  border: 1px solid var(--ring);
+  border-radius: var(--radius);
+  padding: 28px 20px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.05);
+}
