@@ -47,6 +47,7 @@ export default function HomePage() {
             </p>
           </header>
 
+          {/* 3 cards — side by side on desktop */}
           <div className={styles.grid3}>
             {/* STARTER */}
             <article className={styles.card}>
@@ -58,7 +59,7 @@ export default function HomePage() {
                 <li>Mobile-first UI · SEO & accessibility baseline</li>
                 <li>GA4, lead form, privacy basics</li>
               </ul>
-              <p className={styles.muted}>Timeline: 1–2 weeks · $2.5k–$4.5k</p>
+              <p className={styles.muted}>Timeline: 1–2 weeks</p>
             </article>
 
             {/* GROWTH */}
@@ -71,29 +72,8 @@ export default function HomePage() {
                 <li>Email capture (Klaviyo/Mailchimp) · CRM/Zapier</li>
                 <li>404 & thank-you pages</li>
               </ul>
-              <p className={styles.muted}>Timeline: 3–5 weeks · $6k–$12k</p>
+              <p className={styles.muted}>Timeline: 3–5 weeks</p>
             </article>
-
-            {/* LONG CTA — MIDDLE */}
-            <div className={`${styles.ctaBanner} ${styles.spanAll}`}>
-              <div className={styles.ctaBannerInner}>
-                <h3 className={styles.ctaHeadline}>
-                  Let’s map your fastest path to launch
-                </h3>
-                <p className={styles.ctaSub}>
-                  Book a 15-minute discovery call. Get a tailored plan, timeline,
-                  and investment range—no hard sell.
-                </p>
-                <a
-                  href={CALENDLY}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`${styles.btn} ${styles.btnPrimary}`}
-                >
-                  Book a 15-min call
-                </a>
-              </div>
-            </div>
 
             {/* PREMIUM FUNNEL */}
             <article className={styles.card}>
@@ -105,19 +85,17 @@ export default function HomePage() {
                 <li>CRO basics · objections · urgency · A/B test plan</li>
                 <li>Dashboards + weekly insights (4 weeks)</li>
               </ul>
-              <p className={styles.muted}>Timeline: 3–6 weeks · $8k–$18k</p>
+              <p className={styles.muted}>Timeline: 3–6 weeks</p>
             </article>
           </div>
 
-          {/* LONG CTA — BELOW */}
-          <div className={`${styles.ctaBannerAlt}`}>
+          {/* SINGLE CTA — BELOW ALL THREE */}
+          <div className={styles.ctaBannerAlt}>
             <div className={styles.ctaBannerInner}>
-              <h3 className={styles.ctaHeadline}>
-                Ready for a modern site that actually books calls?
-              </h3>
+              <h3 className={styles.ctaHeadline}>Get your quote today</h3>
               <p className={styles.ctaSub}>
-                We’ll scope the simplest build to hit your goals—strategy, copy, design,
-                and launch handled.
+                Tell us your goals and timeline. We’ll send a tailored proposal and
+                the simplest plan to launch.
               </p>
               <a
                 href={CALENDLY}
@@ -125,7 +103,7 @@ export default function HomePage() {
                 rel="noopener noreferrer"
                 className={`${styles.btn} ${styles.btnPrimary}`}
               >
-                Book a 15-min discovery call
+                Get your quote
               </a>
             </div>
           </div>
