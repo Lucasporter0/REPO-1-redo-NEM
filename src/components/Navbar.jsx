@@ -4,10 +4,12 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import styles from "./Navbar.module.css";
 
+const CALENDLY =
+  "https://calendly.com/naturaledgebackup/15-minute-discovery-call";
+
 export function Navbar() {
   const [open, setOpen] = useState(false);
 
-  // close mobile menu after clicking a link or changing hash
   useEffect(() => {
     const close = () => setOpen(false);
     window.addEventListener("hashchange", close);
@@ -25,7 +27,16 @@ export function Navbar() {
         <nav className={styles.nav} aria-label="Primary">
           <Link href="/#services">Services</Link>
           <Link href="/#testimonials">Testimonials</Link>
-          <Link href="/#contact" className={styles.cta}>Contact</Link>
+
+          {/* CTA → Calendly (opens new tab) */}
+          <a
+            href={CALENDLY}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.cta}
+          >
+            Book a call
+          </a>
         </nav>
 
         {/* Mobile toggle */}
@@ -46,11 +57,24 @@ export function Navbar() {
         className={`${styles.mobileNav} ${open ? styles.open : ""}`}
         aria-label="Mobile"
       >
-        <Link href="/#services" onClick={() => setOpen(false)}>Services</Link>
-        <Link href="/#testimonials" onClick={() => setOpen(false)}>Testimonials</Link>
-        <Link href="/#contact" className={styles.cta} onClick={() => setOpen(false)}>Contact</Link>
+        <Link href="/#services" onClick={() => setOpen(false)}>
+          Services
+        </Link>
+        <Link href="/#testimonials" onClick={() => setOpen(false)}>
+          Testimonials
+        </Link>
+
+        {/* CTA → Calendly (opens new tab) */}
+        <a
+          href={CALENDLY}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.cta}
+          onClick={() => setOpen(false)}
+        >
+          Book a call
+        </a>
       </nav>
     </header>
   );
 }
-
