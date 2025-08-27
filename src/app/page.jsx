@@ -17,11 +17,10 @@ export default function HomePage() {
             <br />for health & wellness brands.
           </h1>
           <p className={styles.lead}>
-            Strategy-first, SEO-ready builds that are fast, accessible, and easy
-            to manage. Design you’re proud to ship.
+            Strategy-first builds that are fast, accessible, and easy to manage.
+            Launch with clear messaging, SEO basics, and analytics from day one.
           </p>
           <div className={styles.heroActions}>
-            {/* Primary CTA -> Calendly */}
             <a
               href={CALENDLY}
               target="_blank"
@@ -30,21 +29,9 @@ export default function HomePage() {
             >
               Book a 15-min call
             </a>
-            {/* Secondary CTA keeps in-page navigation */}
             <a href="#services" className={`${styles.btn} ${styles.btnGhost}`}>
               Explore services
             </a>
-          </div>
-
-          <div className={styles.trustRow}>
-            <span>Trusted skills:</span>
-            <ul>
-              <li>Next.js</li>
-              <li>Vercel</li>
-              <li>Shopify</li>
-              <li>Klaviyo</li>
-              <li>SEO</li>
-            </ul>
           </div>
         </div>
       </section>
@@ -56,51 +43,91 @@ export default function HomePage() {
             <p className={styles.tag}>Services</p>
             <h2 className={styles.h2}>Strategy-first websites that convert</h2>
             <p className={styles.sub}>
-              We design and build fast, SEO-ready sites with clean UX and
-              measurable outcomes—no fluff, no lock-in.
+              Three simple packages. Clear deliverables. Built on Next.js + Vercel.
             </p>
           </header>
 
           <div className={styles.grid3}>
+            {/* STARTER */}
             <article className={styles.card}>
               <h3 className={styles.h3}>Starter Website</h3>
-              <p className={styles.cardText}>
-                1–3 page site. Strategy, design, build, launch. Fast, clean,
-                mobile-first.
-              </p>
+              <p className={styles.cardText}>Fast, clean, conversion-ready.</p>
               <ul className={styles.list}>
-                <li>Home, About, Contact</li>
-                <li>Basic SEO & analytics</li>
-                <li>Deployment & handoff</li>
+                <li>1–3 pages (Home, About, Contact)</li>
+                <li>Strategy mini-workshop, site map, wireframes</li>
+                <li>Mobile-first UI · SEO & accessibility baseline</li>
+                <li>GA4, lead form, privacy basics</li>
               </ul>
-              <p className={styles.muted}>Tailored fixed price — request proposal.</p>
+              <p className={styles.muted}>Timeline: 1–2 weeks · $2.5k–$4.5k</p>
             </article>
 
+            {/* GROWTH */}
             <article className={styles.card}>
               <h3 className={styles.h3}>Growth Website</h3>
-              <p className={styles.cardText}>
-                Multi-page site with SEO, blog, and the integrations you actually use.
-              </p>
+              <p className={styles.cardText}>Multi-page site with SEO & CMS.</p>
               <ul className={styles.list}>
-                <li>Custom components & pages</li>
-                <li>SEO schema + blog setup</li>
-                <li>Integrations (email/forms/CRM)</li>
+                <li>5–10 pages + blog/CMS + reusable components</li>
+                <li>Keyword research, on-page SEO, schema, redirects</li>
+                <li>Email capture (Klaviyo/Mailchimp) · CRM/Zapier</li>
+                <li>404 & thank-you pages</li>
               </ul>
-              <p className={styles.muted}>Tailored fixed price — request proposal.</p>
+              <p className={styles.muted}>Timeline: 3–5 weeks · $6k–$12k</p>
             </article>
 
+            {/* LONG CTA — MIDDLE */}
+            <div className={`${styles.ctaBanner} ${styles.spanAll}`}>
+              <div className={styles.ctaBannerInner}>
+                <h3 className={styles.ctaHeadline}>
+                  Let’s map your fastest path to launch
+                </h3>
+                <p className={styles.ctaSub}>
+                  Book a 15-minute discovery call. Get a tailored plan, timeline,
+                  and investment range—no hard sell.
+                </p>
+                <a
+                  href={CALENDLY}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`${styles.btn} ${styles.btnPrimary}`}
+                >
+                  Book a 15-min call
+                </a>
+              </div>
+            </div>
+
+            {/* PREMIUM FUNNEL */}
             <article className={styles.card}>
               <h3 className={styles.h3}>Premium Funnel</h3>
-              <p className={styles.cardText}>
-                Website + lead capture + conversion-focused landing flow.
-              </p>
+              <p className={styles.cardText}>Site + landing system that converts.</p>
               <ul className={styles.list}>
-                <li>Landing + lead magnet</li>
-                <li>Email sequences (Klaviyo/Mailchimp)</li>
-                <li>Ad-ready sections & testing</li>
+                <li>Landing control + 2–4 testable variants</li>
+                <li>Lead magnet or trial flow + email sequences</li>
+                <li>CRO basics · objections · urgency · A/B test plan</li>
+                <li>Dashboards + weekly insights (4 weeks)</li>
               </ul>
-              <p className={styles.muted}>Tailored fixed price — request proposal.</p>
+              <p className={styles.muted}>Timeline: 3–6 weeks · $8k–$18k</p>
             </article>
+          </div>
+
+          {/* LONG CTA — BELOW */}
+          <div className={`${styles.ctaBannerAlt}`}>
+            <div className={styles.ctaBannerInner}>
+              <h3 className={styles.ctaHeadline}>
+                Ready for a modern site that actually books calls?
+              </h3>
+              <p className={styles.ctaSub}>
+                We’ll scope the simplest build to hit your goals—strategy, copy, design,
+                and launch handled.
+              </p>
+              <a
+                href={CALENDLY}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`${styles.btn} ${styles.btnPrimary}`}
+              >
+                Book a 15-min discovery call
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -112,8 +139,8 @@ export default function HomePage() {
             <p className={styles.tag}>Testimonials</p>
             <h2 className={styles.h2}>Proof in the details</h2>
             <p className={styles.sub}>
-              Teams choose Natural Edge Media for modern builds, clear
-              communication, and measurable outcomes.
+              Teams choose Natural Edge Media for modern builds, clear communication,
+              and measurable outcomes.
             </p>
           </header>
 
@@ -121,7 +148,7 @@ export default function HomePage() {
             <figure className={styles.card}>
               <blockquote className={styles.quote}>
                 “Natural Edge shipped a clean site that loads fast and converts.
-                Traffic went up, but more importantly—sign-ups did too.”
+                Traffic went up—and so did sign-ups.”
               </blockquote>
               <figcaption className={styles.caption}>
                 <strong>Avery Lane</strong> — Founder, Daily Greens
@@ -131,7 +158,7 @@ export default function HomePage() {
             <figure className={styles.card}>
               <blockquote className={styles.quote}>
                 “They guided us through content, SEO, and launch. Smooth process
-                and the design actually reflects our brand.”
+                and design that reflects our brand.”
               </blockquote>
               <figcaption className={styles.caption}>
                 <strong>Jordan Patel</strong> — Head of Marketing, Calm Fitness
@@ -158,12 +185,10 @@ export default function HomePage() {
             <p className={styles.tag}>Contact</p>
             <h2 className={styles.h2}>Tell us what you’re building</h2>
             <p className={styles.sub}>
-              Share your goals and constraints. We’ll reply with a tailored
-              proposal—no generic pricing tables.
+              Share goals and constraints. We’ll reply with a tailored proposal.
             </p>
           </header>
 
-          {/* Optional quick Calendly CTA near the form */}
           <div className={styles.heroActions} style={{ marginBottom: 8 }}>
             <a
               href={CALENDLY}
@@ -182,53 +207,26 @@ export default function HomePage() {
             encType="text/plain"
           >
             <div className={styles.field}>
-              <label className={styles.label} htmlFor="name">
-                Name
-              </label>
-              <input
-                id="name"
-                name="Name"
-                className={styles.input}
-                placeholder="Your name"
-              />
+              <label className={styles.label} htmlFor="name">Name</label>
+              <input id="name" name="Name" className={styles.input} placeholder="Your name" />
             </div>
 
             <div className={styles.field}>
-              <label className={styles.label} htmlFor="email">
-                Email
-              </label>
-              <input
-                id="email"
-                name="Email"
-                type="email"
-                className={styles.input}
-                placeholder="you@brand.com"
-              />
+              <label className={styles.label} htmlFor="email">Email</label>
+              <input id="email" name="Email" type="email" className={styles.input} placeholder="you@brand.com" />
             </div>
 
             <div className={styles.fieldFull}>
-              <label className={styles.label} htmlFor="message">
-                Project details
-              </label>
-              <textarea
-                id="message"
-                name="Message"
-                rows={6}
-                className={styles.textarea}
-                placeholder="Goals, timeline, budget range (optional)"
-              />
+              <label className={styles.label} htmlFor="message">Project details</label>
+              <textarea id="message" name="Message" rows={6} className={styles.textarea}
+                placeholder="Goals, timeline, budget range (optional)" />
             </div>
 
             <div className={styles.actions}>
-              <button
-                className={`${styles.btn} ${styles.btnPrimary}`}
-                type="submit"
-              >
+              <button className={`${styles.btn} ${styles.btnPrimary}`} type="submit">
                 Email proposal request
               </button>
-              <span className={styles.mutedSmall}>
-                We’ll respond within 1–2 business days.
-              </span>
+              <span className={styles.mutedSmall}>We’ll respond within 1–2 business days.</span>
             </div>
           </form>
         </div>
