@@ -47,7 +47,7 @@ export default function HomePage() {
             </p>
           </header>
 
-          {/* 3 cards — side by side on desktop */}
+          {/* THREE CARDS — SIDE BY SIDE ON DESKTOP */}
           <div className={styles.grid3}>
             {/* STARTER */}
             <article className={styles.card}>
@@ -90,7 +90,7 @@ export default function HomePage() {
           </div>
 
           {/* SINGLE CTA — BELOW ALL THREE */}
-          <div className={styles.ctaBannerAlt}>
+          <div className={styles.ctaBannerAlt} style={{ marginTop: 24 }}>
             <div className={styles.ctaBannerInner}>
               <h3 className={styles.ctaHeadline}>Get your quote today</h3>
               <p className={styles.ctaSub}>
