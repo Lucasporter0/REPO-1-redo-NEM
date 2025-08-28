@@ -7,6 +7,13 @@ import Footer from "../components/Footer";
 
 const inter = Inter({ subsets: ["latin"], display: "swap" });
 
+// 👇 NEW: themeColor belongs in viewport (not metadata)
+export const viewport = {
+  themeColor: "#0B1213",
+  width: "device-width",
+  initialScale: 1,
+};
+
 export const metadata = {
   metadataBase: new URL("https://naturaledgemedia.net"),
   title: {
@@ -32,7 +39,7 @@ export const metadata = {
       "Natural Edge Media — Clean, high-converting websites for health & wellness brands",
     description:
       "Strategy-first web design & development on Next.js + Vercel. Fast, accessible, SEO-ready sites that convert.",
-    images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "Natural Edge Media — modern, conversion-focused websites" }],
+    images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "Natural Edge Media — conversion-focused websites" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -42,7 +49,6 @@ export const metadata = {
     images: ["/og.jpg"],
   },
   icons: { icon: "/favicon.ico" },
-  themeColor: "#0B1213",
 };
 
 export default function RootLayout({ children }) {
