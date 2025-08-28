@@ -2,15 +2,24 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import styles from "../app/home.module.css";
+import styles from "./StickyCTA.module.css";
 import GaLink from "./GaLink";
 
-export default function StickyCTA({ calendlyHref }) {
+const CALENDLY =
+  "https://calendly.com/naturaledgebackup/15-minute-discovery-call";
+
+/**
+ * Sticky bottom CTA that appears after a light scroll.
+ */
+export default function StickyCTA({
+  calendlyHref = CALENDLY,
+  label = "Book a 15-min call",
+}) {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setShow(window.scrollY > 500);
-    onScroll();
+    onScroll(); // initialize on mount
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -18,15 +27,15 @@ export default function StickyCTA({ calendlyHref }) {
   if (!show) return null;
 
   return (
-    <div className={styles.stickyBar} role="region" aria-label="Mobile call to action">
-      <span className={styles.stickyText}>Ready to start?</span>
+    <div className={styles.bar} role="region" aria-label="Quick action">
+      <span className={styles.text}>Ready to start?</span>
       <GaLink
         href={calendlyHref}
-        label="Calendly - sticky"
-        className={`${styles.btn} ${styles.btnPrimary}`}
+        label={label}
+        className={styles.button}
         aria-label="Book a 15-minute discovery call"
       >
-        Book a 15-min call
+        {label}
       </GaLink>
     </div>
   );
