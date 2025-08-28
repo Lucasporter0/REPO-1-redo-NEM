@@ -1,41 +1,80 @@
+// src/app/layout.jsx
 import "./globals.css";
-import { Navbar } from "../components/Navbar";
-import { Footer } from "../components/Footer";
-import { Inter } from "next/font/google";
-
-const inter = Inter({ subsets: ["latin"], display: "swap" });
+import Script from "next/script";
 
 export const metadata = {
-  title: "Natural Edge Media — Clean, high-converting websites",
+  metadataBase: new URL("https://naturaledgemedia.net"),
+  title: {
+    default:
+      "Natural Edge Media — Clean, high-converting websites for health & wellness brands",
+    template: "%s · Natural Edge Media",
+  },
   description:
-    "Website builds for health & wellness brands. Strategy-first, SEO-ready, fast, and conversion-focused.",
+    "Strategy-first web design & development on Next.js + Vercel. Fast, accessible, SEO-ready sites that convert — plus analytics and launch support.",
+  alternates: {
+    canonical: "https://naturaledgemedia.net",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      maxSnippet: -1,
+      maxImagePreview: "large",
+      maxVideoPreview: -1,
+    },
+  },
   openGraph: {
-    title: "Natural Edge Media",
-    description:
-      "Website builds for health & wellness brands. Strategy-first, SEO-ready, fast, and conversion-focused.",
-    url: "https://example.com",
+    type: "website",
+    url: "https://naturaledgemedia.net",
     siteName: "Natural Edge Media",
-    images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "Natural Edge Media" }],
-    type: "website"
+    title:
+      "Natural Edge Media — Clean, high-converting websites for health & wellness brands",
+    description:
+      "Strategy-first web design & development on Next.js + Vercel. Fast, accessible, SEO-ready sites that convert.",
+    images: [
+      {
+        url: "/og.jpg", // place a 1200x630 image at public/og.jpg
+        width: 1200,
+        height: 630,
+        alt: "Natural Edge Media — modern, conversion-focused websites",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Natural Edge Media",
+    title:
+      "Natural Edge Media — Clean, high-converting websites for health & wellness brands",
     description:
-      "Website builds for health & wellness brands. Strategy-first, SEO-ready, fast, and conversion-focused.",
-    images: ["/og.jpg"]
-  }
+      "Strategy-first web design & development on Next.js + Vercel.",
+    images: ["/og.jpg"],
+  },
+  icons: {
+    icon: "/favicon.ico", // optional: add to /public
+  },
+  themeColor: "#0B1213",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <Navbar />
-        <main style={{ maxWidth: "1120px", margin: "0 auto", padding: "72px 24px" }}>
-          {children}
-        </main>
-        <Footer />
+      <body>
+        {/* GA4 (replace G-XXXXXXX with your ID) */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"
+          strategy="afterInteractive"
+        />
+        <Script id="ga4" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-XXXXXXX', { anonymize_ip: true, transport_type: 'beacon' });
+          `}
+        </Script>
+
+        {children}
       </body>
     </html>
   );
