@@ -9,13 +9,13 @@
   align-items: center;
   justify-content: center;
   padding: 12px;
-  background: rgba(11, 18, 19, .85);
+  background: rgba(11, 18, 19, 0.85);
   backdrop-filter: blur(10px);
-  border-top: 1px solid var(--ring);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .text {
-  color: var(--muted, #aeb8b6);
+  color: #aeb8b6;
   font-size: 14px;
 }
 
@@ -26,6 +26,6 @@
   padding: 12px 18px;
   border-radius: 12px;
   text-decoration: none;
-  border: 1px solid var(--ring);
+  border: 1px solid rgba(255, 255, 255, 0.12);
 }
 .button:hover { filter: brightness(1.05); }
