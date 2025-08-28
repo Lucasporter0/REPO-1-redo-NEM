@@ -1,80 +1,79 @@
+// src/components/Navbar.jsx
 "use client";
 
-import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import styles from "./Navbar.module.css";
 
 const CALENDLY =
   "https://calendly.com/naturaledgebackup/15-minute-discovery-call";
 
-export function Navbar() {
+export default function Navbar() {
   const [open, setOpen] = useState(false);
 
-  useEffect(() => {
-    const close = () => setOpen(false);
-    window.addEventListener("hashchange", close);
-    return () => window.removeEventListener("hashchange", close);
-  }, []);
+  const toggle = () => setOpen((v) => !v);
+  const close = () => setOpen(false);
 
   return (
-    <header className={styles.header}>
-      <div className={styles.container}>
-        <Link href="/" className={styles.brand}>
-          <span>Natural</span> Edge Media
-        </Link>
+    <>
+      {/* Skip link for accessibility */}
+      <a href="#home" className={styles.skip}>Skip to content</a>
 
-        {/* Desktop nav */}
-        <nav className={styles.nav} aria-label="Primary">
-          <Link href="/#services">Services</Link>
-          <Link href="/#testimonials">Testimonials</Link>
-
-          {/* CTA → Calendly (opens new tab) */}
-          <a
-            href={CALENDLY}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.cta}
-          >
-            Book a call
+      <header className={styles.wrap} role="banner">
+        <div className={styles.container}>
+          <a href="/" className={styles.brand} aria-label="Natural Edge Media — Home">
+            <span className={styles.brandSmall}>NATURAL EDGE MEDIA</span>
           </a>
-        </nav>
 
-        {/* Mobile toggle */}
-        <button
-          className={styles.menuButton}
-          aria-expanded={open}
-          aria-controls="mobile-nav"
-          onClick={() => setOpen(!open)}
-        >
-          <span className={styles.srOnly}>Toggle menu</span>
-          <span className={styles.bars} />
-        </button>
-      </div>
+          {/* Desktop nav */}
+          <nav className={styles.nav} aria-label="Primary">
+            <a href="#services" className={styles.link}>Services</a>
+            <a href="#testimonials" className={styles.link}>Testimonials</a>
+            <a href="#contact" className={styles.link}>Contact</a>
+            <a
+              href={CALENDLY}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`${styles.btn} ${styles.btnPrimary}`}
+            >
+              Book a call
+            </a>
+          </nav>
 
-      {/* Mobile nav */}
-      <nav
-        id="mobile-nav"
-        className={`${styles.mobileNav} ${open ? styles.open : ""}`}
-        aria-label="Mobile"
-      >
-        <Link href="/#services" onClick={() => setOpen(false)}>
-          Services
-        </Link>
-        <Link href="/#testimonials" onClick={() => setOpen(false)}>
-          Testimonials
-        </Link>
+          {/* Mobile menu button */}
+          <button
+            className={styles.menuBtn}
+            aria-label="Toggle menu"
+            aria-expanded={open}
+            onClick={toggle}
+          >
+            <span className={styles.burger} />
+          </button>
+        </div>
 
-        {/* CTA → Calendly (opens new tab) */}
-        <a
-          href={CALENDLY}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={styles.cta}
-          onClick={() => setOpen(false)}
-        >
-          Book a call
-        </a>
-      </nav>
-    </header>
+        {/* Mobile menu */}
+        {open && (
+          <div className={styles.mobileMenu} role="dialog" aria-label="Mobile menu">
+            <a href="#services" className={styles.mLink} onClick={close}>
+              Services
+            </a>
+            <a href="#testimonials" className={styles.mLink} onClick={close}>
+              Testimonials
+            </a>
+            <a href="#contact" className={styles.mLink} onClick={close}>
+              Contact
+            </a>
+            <a
+              href={CALENDLY}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={close}
+              className={`${styles.btn} ${styles.btnPrimary} ${styles.mBtn}`}
+            >
+              Book a call
+            </a>
+          </div>
+        )}
+      </header>
+    </>
   );
 }
