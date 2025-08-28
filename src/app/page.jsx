@@ -1,64 +1,50 @@
 // src/app/page.jsx
-export const revalidate = 86400; // re-generate at most once per day (SEO-friendly static)
+export const revalidate = 86400;
 
 import styles from "./home.module.css";
+import GaLink from "../components/GaLink";
+import StickyCTA from "../components/StickyCTA";
 
 const SITE = "https://naturaledgemedia.net";
 const CALENDLY =
   "https://calendly.com/naturaledgebackup/15-minute-discovery-call";
 
-// JSON-LD (Organization + WebSite + Services list)
+// JSON-LD: Org + WebSite + Services + FAQ
 const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
+    { "@type": "Organization", "name": "Natural Edge Media", "url": SITE,
+      "sameAs": [CALENDLY] },
+    { "@type": "WebSite", "url": SITE, "name": "Natural Edge Media",
+      "potentialAction": { "@type": "ContactAction", "target": CALENDLY } },
     {
-      "@type": "Organization",
-      "name": "Natural Edge Media",
-      "url": SITE,
-      "sameAs": [
-        "https://calendly.com/naturaledgebackup/15-minute-discovery-call"
+      "@type": "ItemList", "name": "Website Services",
+      "itemListElement": [
+        { "@type": "Service", "name": "Starter Website",
+          "serviceType": "Web design & development", "areaServed": "Global",
+          "provider": { "@type": "Organization", "name": "Natural Edge Media" },
+          "description": "1–3 page starter site. Strategy mini-workshop, site map + wireframes, mobile-first UI, SEO & accessibility baseline, GA4 and lead form." },
+        { "@type": "Service", "name": "Growth Website",
+          "serviceType": "Web design & development", "areaServed": "Global",
+          "provider": { "@type": "Organization", "name": "Natural Edge Media" },
+          "description": "5–10 pages + blog/CMS, reusable components, keyword research, on-page SEO, structured data (schema), redirects, email capture & CRM." },
+        { "@type": "Service", "name": "Premium Funnel",
+          "serviceType": "CRO & landing systems", "areaServed": "Global",
+          "provider": { "@type": "Organization", "name": "Natural Edge Media" },
+          "description": "Landing control + 2–4 testable variants, lead magnet or trial flow, email sequences, CRO basics, A/B plan, dashboards and weekly insights." }
       ]
     },
     {
-      "@type": "WebSite",
-      "url": SITE,
-      "name": "Natural Edge Media",
-      "potentialAction": {
-        "@type": "ContactAction",
-        "target": CALENDLY
-      }
-    },
-    {
-      "@type": "ItemList",
-      "name": "Website Services",
-      "itemListElement": [
-        {
-          "@type": "Service",
-          "name": "Starter Website",
-          "serviceType": "Web design & development",
-          "areaServed": "Global",
-          "provider": { "@type": "Organization", "name": "Natural Edge Media" },
-          "description":
-            "1–3 page starter site. Strategy mini-workshop, site map + wireframes, mobile-first UI, SEO & accessibility baseline, GA4 and lead form."
-        },
-        {
-          "@type": "Service",
-          "name": "Growth Website",
-          "serviceType": "Web design & development",
-          "areaServed": "Global",
-          "provider": { "@type": "Organization", "name": "Natural Edge Media" },
-          "description":
-            "5–10 pages + blog/CMS, reusable components, keyword research, on-page SEO, structured data (schema), redirects, email capture & CRM."
-        },
-        {
-          "@type": "Service",
-          "name": "Premium Funnel",
-          "serviceType": "CRO & landing systems",
-          "areaServed": "Global",
-          "provider": { "@type": "Organization", "name": "Natural Edge Media" },
-          "description":
-            "Landing control + 2–4 testable variants, lead magnet or trial flow, email sequences, CRO basics, A/B plan, dashboards and weekly insights."
-        }
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type":"Question","name":"How long does a Starter site take?",
+          "acceptedAnswer":{"@type":"Answer","text":"Usually 1–2 weeks from kickoff."}},
+        { "@type":"Question","name":"Do you write the copy?",
+          "acceptedAnswer":{"@type":"Answer","text":"Yes. I draft and refine the core pages, and you approve before build."}},
+        { "@type":"Question","name":"Can you migrate my current site?",
+          "acceptedAnswer":{"@type":"Answer","text":"Yes — content migration, redirects, and SEO handover are included."}},
+        { "@type":"Question","name":"Do you support after launch?",
+          "acceptedAnswer":{"@type":"Answer","text":"Yes — flexible retainers for updates, CRO tests, content, and analytics."}}
       ]
     }
   ]
@@ -67,11 +53,7 @@ const jsonLd = {
 export default function HomePage() {
   return (
     <div className={styles.page}>
-      {/* JSON-LD */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
       {/* HERO */}
       <section id="home" className={styles.hero} aria-labelledby="hero-title">
@@ -87,15 +69,14 @@ export default function HomePage() {
             Launch with clear messaging, SEO basics, and analytics from day one.
           </p>
           <div className={styles.heroActions}>
-            <a
+            <GaLink
               href={CALENDLY}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Book a 15-minute discovery call on Calendly"
+              label="Calendly - hero"
               className={`${styles.btn} ${styles.btnPrimary}`}
+              aria-label="Book a 15-minute discovery call on Calendly"
             >
               Book a 15-min call
-            </a>
+            </GaLink>
             <a
               href="#services"
               className={`${styles.btn} ${styles.btnGhost}`}
@@ -108,11 +89,7 @@ export default function HomePage() {
       </section>
 
       {/* SERVICES */}
-      <section
-        id="services"
-        className={styles.section}
-        aria-labelledby="services-heading"
-      >
+      <section id="services" className={styles.section} aria-labelledby="services-heading">
         <div className={styles.container}>
           <header className={styles.header}>
             <p className={styles.tag}>Services</p>
@@ -124,7 +101,6 @@ export default function HomePage() {
             </p>
           </header>
 
-          {/* Three cards in a row on desktop */}
           <div className={styles.grid3}>
             <article className={styles.card}>
               <h3 className={styles.h3}>Starter Website</h3>
@@ -143,10 +119,7 @@ export default function HomePage() {
               <p className={styles.cardText}>Multi-page site with SEO & CMS.</p>
               <ul className={styles.list}>
                 <li>5–10 pages + blog/CMS + reusable components</li>
-                <li>
-                  Keyword research, on-page SEO, <strong>structured data (schema)</strong>,
-                  redirects
-                </li>
+                <li>Keyword research, on-page SEO, <strong>schema</strong>, redirects</li>
                 <li>Email capture (Klaviyo/Mailchimp) · CRM/Zapier</li>
                 <li>404 & thank-you pages</li>
               </ul>
@@ -166,75 +139,80 @@ export default function HomePage() {
             </article>
           </div>
 
-          {/* Single CTA under the cards */}
           <div className={styles.ctaBannerAlt} style={{ marginTop: 24 }}>
             <div className={styles.ctaBannerInner}>
               <h3 className={styles.ctaHeadline}>Get your quote today</h3>
               <p className={styles.ctaSub}>
-                Tell us your goals and timeline. We’ll send a tailored proposal and
-                the simplest plan to launch.
+                Tell us your goals and timeline. We’ll send a tailored proposal and the simplest plan to launch.
               </p>
-              <a
+              <GaLink
                 href={CALENDLY}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Get your quote on Calendly"
+                label="Calendly - mid-CTA"
                 className={`${styles.btn} ${styles.btnPrimary}`}
+                aria-label="Get your quote on Calendly"
               >
                 Get your quote
-              </a>
+              </GaLink>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section id="faq" className={styles.section} aria-labelledby="faq-heading">
+        <div className={styles.container}>
+          <header className={styles.header}>
+            <p className={styles.tag}>FAQ</p>
+            <h2 id="faq-heading" className={styles.h2}>Answers to common questions</h2>
+          </header>
+          <div className={styles.grid2}>
+            <div>
+              <h3 className={styles.h4}>How long does a Starter site take?</h3>
+              <p>Usually 1–2 weeks from kickoff.</p>
+            </div>
+            <div>
+              <h3 className={styles.h4}>Do you write the copy?</h3>
+              <p>Yes — I draft the core pages and you approve before build.</p>
+            </div>
+            <div>
+              <h3 className={styles.h4}>Can you migrate my current site?</h3>
+              <p>Yes — content migration, redirects, and SEO handover are included.</p>
+            </div>
+            <div>
+              <h3 className={styles.h4}>Do you support after launch?</h3>
+              <p>Yes — flexible retainers for updates, CRO tests, content, and analytics.</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* TESTIMONIALS */}
-      <section
-        id="testimonials"
-        className={styles.section}
-        aria-labelledby="testimonials-heading"
-      >
+      <section id="testimonials" className={styles.section} aria-labelledby="testimonials-heading">
         <div className={styles.container}>
           <header className={styles.header}>
             <p className={styles.tag}>Testimonials</p>
-            <h2 id="testimonials-heading" className={styles.h2}>
-              Proof in the details
-            </h2>
-            <p className={styles.sub}>
-              Teams choose Natural Edge Media for modern builds, clear communication,
-              and measurable outcomes.
-            </p>
+            <h2 id="testimonials-heading" className={styles.h2}>Proof in the details</h2>
+            <p className={styles.sub}>Teams choose Natural Edge Media for modern builds, clear communication, and measurable outcomes.</p>
           </header>
 
           <div className={styles.grid3}>
             <figure className={styles.card}>
               <blockquote className={styles.quote}>
-                “Natural Edge shipped a clean site that loads fast and converts.
-                Traffic went up—and so did sign-ups.”
+                “Natural Edge shipped a clean site that loads fast and converts. Traffic went up—and so did sign-ups.”
               </blockquote>
-              <figcaption className={styles.caption}>
-                <strong>Avery Lane</strong> — Founder, Daily Greens
-              </figcaption>
+              <figcaption className={styles.caption}><strong>Avery Lane</strong> — Founder, Daily Greens</figcaption>
             </figure>
-
             <figure className={styles.card}>
               <blockquote className={styles.quote}>
-                “They guided us through content, SEO, and launch. Smooth process
-                and design that reflects our brand.”
+                “They guided us through content, SEO, and launch. Smooth process and design that reflects our brand.”
               </blockquote>
-              <figcaption className={styles.caption}>
-                <strong>Jordan Patel</strong> — Head of Marketing, Calm Fitness
-              </figcaption>
+              <figcaption className={styles.caption}><strong>Jordan Patel</strong> — Head of Marketing, Calm Fitness</figcaption>
             </figure>
-
             <figure className={styles.card}>
               <blockquote className={styles.quote}>
-                “Our landing + email flow paid for itself within weeks. Clear
-                dashboards, quick iterations, real results.”
+                “Our landing + email flow paid for itself within weeks. Clear dashboards, quick iterations, real results.”
               </blockquote>
-              <figcaption className={styles.caption}>
-                <strong>Maya Chen</strong> — COO, Wellness Co.
-              </figcaption>
+              <figcaption className={styles.caption}><strong>Maya Chen</strong> — COO, Wellness Co.</figcaption>
             </figure>
           </div>
         </div>
@@ -246,21 +224,18 @@ export default function HomePage() {
           <header className={styles.header}>
             <p className={styles.tag}>Contact</p>
             <h2 id="contact-heading" className={styles.h2}>Tell us what you’re building</h2>
-            <p className={styles.sub}>
-              Share goals and constraints. We’ll reply with a tailored proposal.
-            </p>
+            <p className={styles.sub}>Share goals and constraints. We’ll reply with a tailored proposal.</p>
           </header>
 
           <div className={styles.heroActions} style={{ marginBottom: 8 }}>
-            <a
+            <GaLink
               href={CALENDLY}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Book a 15-minute discovery call"
+              label="Calendly - contact"
               className={`${styles.btn} ${styles.btnPrimary}`}
+              aria-label="Book a 15-minute discovery call"
             >
               Book a 15-min call
-            </a>
+            </GaLink>
           </div>
 
           <form
@@ -274,27 +249,25 @@ export default function HomePage() {
               <label className={styles.label} htmlFor="name">Name</label>
               <input id="name" name="Name" className={styles.input} placeholder="Your name" />
             </div>
-
             <div className={styles.field}>
               <label className={styles.label} htmlFor="email">Email</label>
               <input id="email" name="Email" type="email" className={styles.input} placeholder="you@brand.com" />
             </div>
-
             <div className={styles.fieldFull}>
               <label className={styles.label} htmlFor="message">Project details</label>
               <textarea id="message" name="Message" rows={6} className={styles.textarea}
                 placeholder="Goals, timeline, budget range (optional)" />
             </div>
-
             <div className={styles.actions}>
-              <button className={`${styles.btn} ${styles.btnPrimary}`} type="submit">
-                Email proposal request
-              </button>
+              <button className={`${styles.btn} ${styles.btnPrimary}`} type="submit">Email proposal request</button>
               <span className={styles.mutedSmall}>We’ll respond within 1–2 business days.</span>
             </div>
           </form>
         </div>
       </section>
+
+      {/* Sticky mobile CTA (appears after scrolling) */}
+      <StickyCTA calendlyHref={CALENDLY} />
     </div>
   );
 }
