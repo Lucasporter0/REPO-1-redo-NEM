@@ -1,5 +1,4 @@
 // src/app/sitemap.js
-import { MetadataRoute } from "next";
 
 export default function sitemap() {
   const base = "https://naturaledgemedia.net";
@@ -10,5 +9,5 @@ export default function sitemap() {
       changeFrequency: "weekly",
       priority: 1,
     },
-  ] satisfies MetadataRoute.Sitemap;
+  ];
 }
