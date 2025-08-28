@@ -95,7 +95,7 @@ export default function Home() {
             </article>
           </div>
 
-          {/* CTA under all three services */}
+          {/* CTA after all three services */}
           <div className={styles.ctaBand}>
             <h3 className={styles.ctaTitle}>Get your quote today</h3>
             <p className={styles.ctaSub}>
@@ -113,7 +113,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Sticky quick CTA (appears after a short scroll) */}
+      {/* Sticky quick CTA */}
       <StickyCTA />
     </main>
   );
