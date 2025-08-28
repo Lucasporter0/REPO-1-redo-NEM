@@ -1,6 +1,7 @@
 // src/app/layout.jsx
-import "./globals.css";
+import "../app/globals.css";
 import Script from "next/script";
+import Navbar from "../components/Navbar";
 
 export const metadata = {
   metadataBase: new URL("https://naturaledgemedia.net"),
@@ -35,7 +36,7 @@ export const metadata = {
       "Strategy-first web design & development on Next.js + Vercel. Fast, accessible, SEO-ready sites that convert.",
     images: [
       {
-        url: "/og.jpg", // place a 1200x630 image at public/og.jpg
+        url: "/og.jpg",
         width: 1200,
         height: 630,
         alt: "Natural Edge Media — modern, conversion-focused websites",
@@ -51,7 +52,7 @@ export const metadata = {
     images: ["/og.jpg"],
   },
   icons: {
-    icon: "/favicon.ico", // optional: add to /public
+    icon: "/favicon.ico",
   },
   themeColor: "#0B1213",
 };
@@ -74,6 +75,10 @@ export default function RootLayout({ children }) {
           `}
         </Script>
 
+        {/* Sticky header */}
+        <Navbar />
+
+        {/* Page content */}
         {children}
       </body>
     </html>
