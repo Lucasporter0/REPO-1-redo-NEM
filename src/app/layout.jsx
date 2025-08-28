@@ -1,7 +1,11 @@
 // src/app/layout.jsx
-import "../app/globals.css";
+import "./globals.css";
 import Script from "next/script";
+import { Inter } from "next/font/google";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+
+const inter = Inter({ subsets: ["latin"], display: "swap" });
 
 export const metadata = {
   metadataBase: new URL("https://naturaledgemedia.net"),
@@ -18,13 +22,7 @@ export const metadata = {
   robots: {
     index: true,
     follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      maxSnippet: -1,
-      maxImagePreview: "large",
-      maxVideoPreview: -1,
-    },
+    googleBot: { index: true, follow: true, maxSnippet: -1, maxImagePreview: "large", maxVideoPreview: -1 },
   },
   openGraph: {
     type: "website",
@@ -34,34 +32,24 @@ export const metadata = {
       "Natural Edge Media — Clean, high-converting websites for health & wellness brands",
     description:
       "Strategy-first web design & development on Next.js + Vercel. Fast, accessible, SEO-ready sites that convert.",
-    images: [
-      {
-        url: "/og.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Natural Edge Media — modern, conversion-focused websites",
-      },
-    ],
+    images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "Natural Edge Media — modern, conversion-focused websites" }],
   },
   twitter: {
     card: "summary_large_image",
     title:
       "Natural Edge Media — Clean, high-converting websites for health & wellness brands",
-    description:
-      "Strategy-first web design & development on Next.js + Vercel.",
+    description: "Strategy-first web design & development on Next.js + Vercel.",
     images: ["/og.jpg"],
   },
-  icons: {
-    icon: "/favicon.ico",
-  },
+  icons: { icon: "/favicon.ico" },
   themeColor: "#0B1213",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>
-        {/* GA4 (replace G-XXXXXXX with your ID) */}
+      <body className={inter.className}>
+        {/* GA4 (replace G-XXXXXXX) */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"
           strategy="afterInteractive"
@@ -75,11 +63,9 @@ export default function RootLayout({ children }) {
           `}
         </Script>
 
-        {/* Sticky header */}
         <Navbar />
-
-        {/* Page content */}
         {children}
+        <Footer />
       </body>
     </html>
   );
