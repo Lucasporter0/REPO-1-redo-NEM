@@ -1,5 +1,4 @@
 // src/app/robots.js
-import { MetadataRoute } from "next";
 
 export default function robots() {
   return {
@@ -8,6 +7,5 @@ export default function robots() {
       allow: "/",
     },
     sitemap: "https://naturaledgemedia.net/sitemap.xml",
-  } satisfies MetadataRoute.Robots;
+  };
 }
-
