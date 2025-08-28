@@ -1,42 +1,31 @@
-// src/components/StickyCTA.jsx
-"use client";
+/* src/components/StickyCTA.module.css */
 
-import { useEffect, useState } from "react";
-import styles from "./StickyCTA.module.css";
-import GaLink from "./GaLink";
-
-const CALENDLY =
-  "https://calendly.com/naturaledgebackup/15-minute-discovery-call";
-
-/**
- * Sticky bottom CTA that appears after a light scroll.
- */
-export default function StickyCTA({
-  calendlyHref = CALENDLY,
-  label = "Book a 15-min call",
-}) {
-  const [show, setShow] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setShow(window.scrollY > 500);
-    onScroll(); // initialize on mount
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  if (!show) return null;
-
-  return (
-    <div className={styles.bar} role="region" aria-label="Quick action">
-      <span className={styles.text}>Ready to start?</span>
-      <GaLink
-        href={calendlyHref}
-        label={label}
-        className={styles.button}
-        aria-label="Book a 15-minute discovery call"
-      >
-        {label}
-      </GaLink>
-    </div>
-  );
+.bar {
+  position: sticky;
+  bottom: 0;
+  z-index: 40;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  background: rgba(11, 18, 19, 0.85);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
 }
+
+.text {
+  color: #aeb8b6;
+  font-size: 14px;
+}
+
+.button {
+  background: #22c55e;
+  color: #04110f;
+  font-weight: 700;
+  padding: 12px 18px;
+  border-radius: 12px;
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+.button:hover { filter: brightness(1.05); }
