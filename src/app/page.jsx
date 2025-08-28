@@ -1,7 +1,5 @@
 // src/app/page.jsx
 import styles from "./home.module.css";
-import GaLink from "../components/GaLink";
-import StickyCTA from "../components/StickyCTA";
 
 const CALENDLY =
   "https://calendly.com/naturaledgebackup/15-minute-discovery-call";
@@ -26,13 +24,15 @@ export default function Home() {
           </p>
 
           <div className={styles.actions}>
-            <GaLink
+            <a
               href={CALENDLY}
-              label="Book a 15-min call"
+              target="_blank"
+              rel="noopener noreferrer"
               className={styles.btnPrimary}
+              aria-label="Book a 15-minute discovery call"
             >
               Book a 15-min call
-            </GaLink>
+            </a>
 
             <a href="#services" className={styles.btnGhost}>
               Explore services
@@ -95,26 +95,25 @@ export default function Home() {
             </article>
           </div>
 
-          {/* CTA after all three services */}
+          {/* Single CTA below all services */}
           <div className={styles.ctaBand}>
             <h3 className={styles.ctaTitle}>Get your quote today</h3>
             <p className={styles.ctaSub}>
               Tell us about your goals and we’ll map the simplest path to
               launch—strategy, copy, design, and build handled.
             </p>
-            <GaLink
+            <a
               href={CALENDLY}
-              label="Get your quote"
+              target="_blank"
+              rel="noopener noreferrer"
               className={styles.ctaButton}
+              aria-label="Get your quote on Calendly"
             >
               Get your quote
-            </GaLink>
+            </a>
           </div>
         </div>
       </section>
-
-      {/* Sticky quick CTA */}
-      <StickyCTA />
     </main>
   );
 }
