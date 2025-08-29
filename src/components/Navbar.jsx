@@ -9,7 +9,6 @@ const CALENDLY =
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
-
   const toggle = () => setOpen((v) => !v);
   const close = () => setOpen(false);
 
@@ -26,9 +25,10 @@ export default function Navbar() {
 
           {/* Desktop nav */}
           <nav className={styles.nav} aria-label="Primary">
-            <a href="#services" className={styles.link}>Services</a>
-            <a href="#testimonials" className={styles.link}>Testimonials</a>
-            <a href="#contact" className={styles.link}>Contact</a>
+            <a href="/services" className={styles.link}>Services</a>
+            <a href="/work" className={styles.link}>Work</a>
+            <a href="/about" className={styles.link}>About</a>
+            <a href="/contact" className={styles.link}>Contact</a>
             <a
               href={CALENDLY}
               target="_blank"
@@ -53,15 +53,10 @@ export default function Navbar() {
         {/* Mobile menu */}
         {open && (
           <div className={styles.mobileMenu} role="dialog" aria-label="Mobile menu">
-            <a href="#services" className={styles.mLink} onClick={close}>
-              Services
-            </a>
-            <a href="#testimonials" className={styles.mLink} onClick={close}>
-              Testimonials
-            </a>
-            <a href="#contact" className={styles.mLink} onClick={close}>
-              Contact
-            </a>
+            <a href="/services" className={styles.mLink} onClick={close}>Services</a>
+            <a href="/work" className={styles.mLink} onClick={close}>Work</a>
+            <a href="/about" className={styles.mLink} onClick={close}>About</a>
+            <a href="/contact" className={styles.mLink} onClick={close}>Contact</a>
             <a
               href={CALENDLY}
               target="_blank"
